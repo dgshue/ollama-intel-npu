@@ -1,0 +1,43 @@
+FROM intel_openvino:v3
+USER root
+SHELL ["/bin/bash", "-c"]
+
+RUN apt-get update && apt install -y software-properties-common curl
+RUN python -m pip install modelscope
+RUN python -m pip install -U huggingface_hub
+
+
+RUN apt-get install -y ca-certificates git wget curl gcc g++ vim \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home/openvino
+ARG GOVERSION=1.24.1
+RUN curl -fsSL https://golang.org/dl/go${GOVERSION}.linux-$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac).tar.gz | tar xz -C /usr/local
+ENV PATH=/usr/local/go/bin:$PATH
+
+ENV GENAI_DIR=/opt/intel/openvino_2025.1.0
+
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GENAI_DIR/runtime/3rdparty/tbb/lib:$GENAI_DIR/runtime/lib/intel64
+
+ENV CGO_ENABLED=1
+ENV GODEBUG=cgocheck=0
+
+ENV CGO_LDFLAGS=-L$GENAI_DIR/runtime/lib/intel64
+ENV CGO_CFLAGS=-I$GENAI_DIR/runtime/include
+
+RUN $GENAI_DIR/setupvars.sh
+
+WORKDIR /home/openvino
+RUN git clone https://github.com/zhaohb/ollama_ov.git
+WORKDIR /home/openvino/ollama_ov
+
+RUN go build -o /bin/ollama .
+
+ENV OLLAMA_HOST=0.0.0.0:11434
+EXPOSE 11434
+
+RUN echo "/bin/ollama serve" >> $GENAI_DIR/setupvars.sh
+
+ENTRYPOINT ["/opt/intel/openvino_2025.1.0/setupvars.sh"]
+
