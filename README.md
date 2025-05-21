@@ -3,6 +3,7 @@
 This repo illustrates the use of Intel(R) Core(TM) Ultra NPU against Ollama through OpenVINO GenAI backend with Docker. This is a compilation of several projects.  I'm no AI expert, just a hobbiest that wanted to make some use of the NPU to see if it performed any better than the GPU. I would love for someone to take this and run with it.
 
 # Results
+Intel(R) Core(TM) Ultra 7 265K
 
 |Metric             |GPU                    |NPU                    |
 |-------------------|:---------------------:|:---------------------:|
