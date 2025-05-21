@@ -1,0 +1,38 @@
+networks:
+  ollama-net:
+    driver: bridge
+
+services:
+  ollama-ov:
+    image: ollama-intel-npu:latest
+    container_name: ollama-ov
+    restart: always
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/accel/accel0:/dev/accel/accel0
+    environment:
+      - ONEAPI_DEVICE_SELECTOR=level_zero:0
+      - OLLAMA_INTEL_GPU=TRUE
+    volumes:
+      - ollama-ov:/root/.ollama
+    networks:
+      - ollama-net
+  ollama-webui:
+    image: ghcr.io/open-webui/open-webui
+    container_name: ollama-webui
+    volumes:
+      - ollama-webui:/app/backend/data
+    depends_on:
+      - ollama-ov
+    ports:
+      - ${OLLAMA_WEBUI_PORT-3000}:8080
+    environment:
+      - OLLAMA_BASE_URL=http://ollama-ov:11434
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - ollama-net
+    restart: unless-stopped
+volumes:
+  ollama-ov: {}
+  ollama-webui: {}
