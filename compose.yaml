@@ -1,6 +1,7 @@
 networks:
   ollama-net:
     driver: bridge
+    external: true
 
 services:
   ollama-ov:
