@@ -1,6 +1,19 @@
 # ollama-intel-npu
 
-This repo illustrates the use of Intel(R) Core(TM) Ultra NPU against Ollama through OpenVINO GenAI backend with Docker. This is a compilation of several projects.
+This repo illustrates the use of Intel(R) Core(TM) Ultra NPU against Ollama through OpenVINO GenAI backend with Docker. This is a compilation of several projects.  I'm no AI expert, just a hobbiest that wanted to make some use of the NPU to see if it performed any better than the GPU. I would love for someone to take this and run with it.
+
+# Results
+
+|Metric             |GPU                    |NPU                    |
+|-------------------|:---------------------:|:---------------------:|
+|Load time          | 7034.00               |29956.00               |
+|Generate time      | 166356.30 ± 0.00 ms   |88097.87 ± 0.00 ms     |
+|Tokenization time  | 0.64 ± 0.00 ms        |1.14 ± 0.00 ms         |
+|Detokenization time| 0.10 ± 0.00 ms        |0.41 ± 0.00 ms         |
+|TTFT               | 332.98 ± 0.00 ms      |6897.71 ± 0.00 ms      |
+|TPOT               | 81.12 ± 2.70 ms/token |145.78 ± 0.54 ms/token |
+|Throughput         | 12.33 ± 0.41 tokens/s |6.86 ± 0.03 tokens/s   |
+
 
 # References
 |   |   |
