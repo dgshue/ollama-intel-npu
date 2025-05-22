@@ -388,10 +388,10 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && apt install -y software-properties-common curl
 RUN python -m pip install modelscope
 RUN python -m pip install -U huggingface_hub
-RUN python -m pip install --upgrade --upgrade-strategy eager "optimum[neural-compressor]"
-RUN python -m pip install --upgrade --upgrade-strategy eager "optimum[openvino]"
-RUN python -m pip install --upgrade --upgrade-strategy eager "optimum[ipex]"
-
+RUN python -m pip install huggingface_hub[hf_xet]
+RUN python -m python -m pip install "optimum-intel[neural-compressor]"@git+https://github.com/huggingface/optimum-intel.git
+RUN python -m python -m pip install "optimum-intel[openvino]"@git+https://github.com/huggingface/optimum-intel.git
+RUN python -m python -m pip install "optimum-intel[ipex]"@git+https://github.com/huggingface/optimum-intel.git
 
 RUN apt-get install -y ca-certificates git wget curl gcc g++ vim \
     && apt-get clean \
