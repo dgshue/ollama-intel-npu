@@ -114,11 +114,6 @@ Let's take [deepseek-ai/DeepSeek-R1-Distill-Qwen-7B](https://hf-mirror.com/deeps
     FROM  DeepSeek-R1-Distill-Qwen-7B-int4-ov.tar.gz
     ModelType "OpenVINO"
     InferDevice "NPU"
-    PARAMETER stop ""
-    PARAMETER stop "```"
-    PARAMETER stop "</User|>"
-    PARAMETER stop "<|end_of_sentence|>"
-    PARAMETER stop "</｜"
     PARAMETER max_new_token 4096
     PARAMETER stop_id 151643
     PARAMETER stop_id 151647
