@@ -22,6 +22,7 @@ Intel(R) Core(TM) Ultra 7 265K
 | ollama_ov | https://github.com/zhaohb/ollama_ov |
 | openvinotoolkit | https://github.com/openvinotoolkit/docker_ci/tree/master/dockerfiles |
 | Intel NPU Drivers | https://github.com/intel/linux-npu-driver/releases |
+| OpenVINO Blog | https://blog.openvino.ai/blog-posts/ollama-integrated-with-openvino-accelerating-deepseek-inference|
 
 # Prerequisites
 In addition to requiring the drivers in the container itself, you'll need to ensure you have the device drivers installed on your host system. To make things easier, I matched the versions of Ubuntu and the drivers between my host systems and container. Not sure if this is required but it was my best chance at success.
