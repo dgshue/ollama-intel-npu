@@ -100,7 +100,12 @@ Let's take [deepseek-ai/DeepSeek-R1-Distill-Qwen-7B](https://hf-mirror.com/deeps
       cd /root/.ollama
       huggingface-cli download --resume-download OpenVINO/TinyLlama-1.1B-Chat-v1.0-int4-ov  --local-dir  TinyLlama-1.1B-Chat-v1.0-int4-ov --local-dir-use-symlinks False
       ```
+        OR
 
+      You can download most any model and export it to OpenVINO yourself using optimum-cli
+      ```
+      optimum-cli export openvino --model meta-llama/Llama-2-7b-chat-hf --weight-format fp16 ov_llama_2
+      ```
 
 3. Package OpenVINO IR into a tar.gz file
     ```bash
