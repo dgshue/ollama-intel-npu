@@ -105,6 +105,7 @@ Let's take [deepseek-ai/DeepSeek-R1-Distill-Qwen-7B](https://hf-mirror.com/deeps
       ```
       optimum-cli export openvino --model meta-llama/Llama-2-7b-chat-hf --weight-format fp16 ov_llama_2
       ```
+      https://docs.openvino.ai/2025/openvino-workflow-generative/genai-model-preparation.html
 
 3. Package OpenVINO IR into a tar.gz file
     ```bash
